@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="card">
+      <h1>Vue Composition Api</h1>
+      <small>data, methods, computed, watch</small>
+      <hr>
+      <p>Название: <strong>{{ name }}</strong></p>
+      <p>Версия: <strong>{{ version }}</strong></p>
+
+      <button class="btn" @click="changeInfo">Изменить</button>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  setup() {
+
+  },
+  // data() {
+  //   return {
+  //     name: 'VueJS',
+  //     version: 3
+  //   }
+  // },
+  // methods: {
+  //   changeInfo() {
+  //     this.name = 'Vue JS!'
+  //     this.version = 4
+  //   }
+  // }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
