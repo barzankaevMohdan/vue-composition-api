@@ -13,32 +13,25 @@
 </template>
 
 <script>
-import {ref, reactive, isRef, isReactive} from 'vue'
+import {reactive, toRefs} from 'vue'
 
 export default {
   setup() {
-    const name = ref('VueJS')
-    const version = ref(3)
-
-    console.log(isRef(name))
-    console.log(isRef(version.value))
-
     const framework = reactive({
       name: 'VueJs',
       version: 3
     })
 
-    console.log(isReactive(framework))
-    console.log(isReactive(framework.name))
-
     const changeInfo = () => {
-      name.value = 'Vue JS !'
-      version.value= 4
+      framework.name = "Vue JS !"
+      framework.version = 4
     }
 
     return {
-      name: name,
-      version: version,
+      // {name: framework.value.name,  <---not reactive
+      // version: framework.value.version,}
+      ...toRefs(framework),
+      framework: framework,
       change: changeInfo
     }
   },
