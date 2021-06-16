@@ -6,6 +6,9 @@
       <hr>
       <p>Название: <strong>{{ name }}</strong></p>
       <p>Версия: <strong>{{ version }} ({{double}})</strong></p>
+      <div class="form-control">
+        <input type="text" ref="textInput">
+      </div>
 
       <button class="btn" @click="change">Изменить</button>
     </div>
@@ -26,6 +29,7 @@ export default {
   setup() {
     const name = ref('VueJS')
     const version = ref(3)
+    const textInput = ref(null)
 
     console.log(isRef(name))
     console.log(isRef(version.value))
@@ -49,13 +53,16 @@ export default {
     const changeInfo = () => {
       name.value = 'Vue JS !'
       version.value= 4
+
+      console.log(textInput.value.value)
     }
 
     return {
       name: name,
       version: version,
       change: changeInfo,
-      double: doubleVersion
+      double: doubleVersion,
+      textInput: textInput
     }
   },
   // data() {
