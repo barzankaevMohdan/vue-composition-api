@@ -3,9 +3,6 @@
     <div class="card">
       <h1>Vue Composition Api</h1>
       <small>data, methods, computed, watch</small>
-      <hr>
-      <p>Название: <strong>{{ name }}</strong></p>
-      <p>Версия: <strong>{{ version }} ({{double}})</strong></p>
       <div class="form-control">
         <input type="text" ref="textInput">
         <input type="text" v-model="firstName">
@@ -13,13 +10,17 @@
 
       <button class="btn" @click="change">Изменить</button>
     </div>
+    <framework-info
+      :name="name"
+      :version="version"
+    ></framework-info>
   </div>
 </template>
 
 <script>
+import FrameworkInfo from './FrameworkInfo'
 import {
-  ref, 
-  computed,
+  ref,
   watch
   } from 'vue'
 
@@ -29,8 +30,6 @@ export default {
     const version = ref(3)
     const textInput = ref(null)
     const firstName = ref('')
-
-    const doubleVersion = computed(() => version.value * 2 )
     
     // watch([doubleVersion, name], (newValues, oldValues) => {
     //   console.log('new version', newValues[0])
@@ -55,27 +54,10 @@ export default {
       name,
       version,
       change: changeInfo,
-      double: doubleVersion,
       textInput,
       firstName
     }
   },
-  // data() {
-  //   return {
-  //     name: 'VueJS',
-  //     version: 3
-  //   }
-  // },
-  // methods: {
-  //   changeInfo() {
-  //     this.name = 'Vue JS!'
-  //     this.version = 4
-  //   }
-  // }
-  // computed: {
-  //   doubleVersion() {
-  //     return this.version * 2
-  //   }
-  // }
+  components: { FrameworkInfo }
 }
 </script>
