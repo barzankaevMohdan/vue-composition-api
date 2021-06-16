@@ -13,6 +13,7 @@
     <framework-info
       :name="name"
       :version="version"
+      @change-version="changeVersion"
     ></framework-info>
   </div>
 </template>
@@ -42,7 +43,7 @@ export default {
       console.log('v-model:value', newV)
     })
 
-    const changeInfo = () => {
+    function changeInfo () {
       name.value = 'Vue JS !'
       version.value= 4
 
@@ -50,12 +51,17 @@ export default {
       console.log('v-model', firstName.value)
     }
 
+    function changeVersion (num) {
+      version.value = num
+    } 
+
     return {
       name,
       version,
       change: changeInfo,
       textInput,
-      firstName
+      firstName,
+      changeVersion
     }
   },
   components: { FrameworkInfo }
