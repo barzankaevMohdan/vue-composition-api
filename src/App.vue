@@ -13,7 +13,14 @@
 </template>
 
 <script>
-import {ref, reactive, isRef, isReactive, computed} from 'vue'
+import {
+  ref, 
+  reactive, 
+  isRef, 
+  isReactive, 
+  computed,
+  watch
+  } from 'vue'
 
 export default {
   setup() {
@@ -29,6 +36,12 @@ export default {
     })
 
     const doubleVersion = computed(() => version.value * 2 )
+    watch([doubleVersion, name], (newValues, oldValues) => {
+      console.log('new version', newValues[0])
+      console.log('new name', newValues[1])
+      console.log('old version', oldValues[0])
+      console.log('old name', oldValues[1])
+    })
 
     console.log(isReactive(framework))
     console.log(isReactive(framework.name))
