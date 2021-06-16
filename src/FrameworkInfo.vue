@@ -7,18 +7,22 @@
 </template>
 
 <script>
-import {computed} from 'vue'
+import {computed, inject} from 'vue'
 export default {
-    props: ['name', 'version'],
+    // props: ['name', 'version'],
     emits: ['change-version'],
     setup(props, context) {
-        const doubleVersion = computed(() => props.version * 2)
+        const doubleVersion = computed(() => version.value * 2)
 
         function changeVersion () {
             context.emit('change-version', 3)
         }
 
+        const version = inject('version')
+
         return {
+            name: inject('name'),
+            version,
             double: doubleVersion,
             change: changeVersion
         }

@@ -10,9 +10,13 @@
 
       <button class="btn" @click="change">Изменить</button>
     </div>
-    <framework-info
+    <!-- <framework-info
       :name="name"
       :version="version"
+      @change-version="changeVersion"
+    ></framework-info> -->
+
+    <framework-info
       @change-version="changeVersion"
     ></framework-info>
   </div>
@@ -22,7 +26,8 @@
 import FrameworkInfo from './FrameworkInfo'
 import {
   ref,
-  watch
+  watch,
+  provide
   } from 'vue'
 
 export default {
@@ -54,6 +59,9 @@ export default {
     function changeVersion (num) {
       version.value = num
     } 
+
+    provide('name', name)
+    provide('version', version)
 
     return {
       name,
