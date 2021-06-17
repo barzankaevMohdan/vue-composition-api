@@ -26,16 +26,17 @@ import AppAlert from '../AppAlert.vue'
 import {useAlert} from '../use/Alert'
 export default {
     setup() {
-        const {alert, close, toggle} = useAlert()
+        // const {alert, close, toggle} = useAlert()
         const router = useRouter()
 
         const navigate = () => router.push('/')
 
         return{
             navigate,
-            alert,
-            toggle,
-            close
+            // alert,
+            // toggle,
+            // close
+            ...useAlert()
         }
     },
     components: { AppAlert }

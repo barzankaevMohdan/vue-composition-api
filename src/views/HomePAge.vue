@@ -33,6 +33,7 @@
 <script>
 import AppAlert from '../AppAlert.vue'
 import FrameworkInfo from '../FrameworkInfo'
+import {useAlert} from '../use/Alert'
 import {
   ref,
   watch,
@@ -45,6 +46,7 @@ export default {
     const version = ref(3)
     const textInput = ref(null)
     const firstName = ref('')
+    // const {alert, close, toggle} = useAlert()
 
     watch(firstName, (newV) => {
       console.log('v-model:value', newV)
@@ -71,7 +73,11 @@ export default {
       change: changeInfo,
       textInput,
       firstName,
-      changeVersion
+      changeVersion,
+      // alert,
+      // close,
+      // toggle
+      ...useAlert()
     }
   },
   components: { FrameworkInfo, AppAlert }
