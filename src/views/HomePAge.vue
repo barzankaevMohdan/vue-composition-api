@@ -1,13 +1,28 @@
 <template>
+    <app-alert
+        v-if="alert"
+        title="Работаем с Composition"
+        type="danger"
+        @close="close"
+    >
+    </app-alert>
     <div class="card">
       <h1>Vue Composition Api</h1>
       <small>data, methods, computed, watch</small>
       <div class="form-control">
         <input type="text" ref="textInput">
+        <hr>
         <input type="text" v-model="firstName">
       </div>
 
       <button class="btn" @click="change">Изменить</button>
+      <button 
+            class="btn"
+            :class="alert ? 'danger' : 'primary'" 
+            @click="toggle"
+        >
+            {{ alert ? 'Закрыть' : 'Показать' }} сообщение
+        </button>
     </div>
 
     <framework-info
@@ -16,6 +31,7 @@
 </template>
 
 <script>
+import AppAlert from '../AppAlert.vue'
 import FrameworkInfo from '../FrameworkInfo'
 import {
   ref,
@@ -58,6 +74,6 @@ export default {
       changeVersion
     }
   },
-  components: { FrameworkInfo }
+  components: { FrameworkInfo, AppAlert }
 }
 </script>
