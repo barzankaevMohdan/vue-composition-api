@@ -1,77 +1,20 @@
 <template>
-  <div class="container">
-    <div class="card">
-      <h1>Vue Composition Api</h1>
-      <small>data, methods, computed, watch</small>
-      <div class="form-control">
-        <input type="text" ref="textInput">
-        <input type="text" v-model="firstName">
-      </div>
-
-      <button class="btn" @click="change">Изменить</button>
-    </div>
-    <!-- <framework-info
-      :name="name"
-      :version="version"
-      @change-version="changeVersion"
-    ></framework-info> -->
-
-    <framework-info
-      @change-version="changeVersion"
-    ></framework-info>
+  <header class="navbar">
+    <strong>Vue composition Api</strong>
+    <ul class="navbar-menu">
+      <li>
+        <router-link to="/">Главная</router-link>
+      </li>
+      <li>
+        <router-link to="/reusable">Переиспользование</router-link>
+      </li>
+    </ul>
+  </header>
+  <div class="container with-nav">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import FrameworkInfo from './FrameworkInfo'
-import {
-  ref,
-  watch,
-  provide
-  } from 'vue'
 
-export default {
-  setup() {
-    const name = ref('VueJS')
-    const version = ref(3)
-    const textInput = ref(null)
-    const firstName = ref('')
-    
-    // watch([doubleVersion, name], (newValues, oldValues) => {
-    //   console.log('new version', newValues[0])
-    //   console.log('new name', newValues[1])
-    //   console.log('old version', oldValues[0])
-    //   console.log('old name', oldValues[1])
-    // })
-
-    watch(firstName, (newV) => {
-      console.log('v-model:value', newV)
-    })
-
-    function changeInfo () {
-      name.value = 'Vue JS !'
-      version.value= 4
-
-      console.log('ref', textInput.value.value)
-      console.log('v-model', firstName.value)
-    }
-
-    function changeVersion (num) {
-      version.value = num
-    } 
-
-    provide('name', name)
-    provide('version', version)
-
-    return {
-      name,
-      version,
-      change: changeInfo,
-      textInput,
-      firstName,
-      changeVersion
-    }
-  },
-  components: { FrameworkInfo }
-}
 </script>
